@@ -1,12 +1,3 @@
-#----- AWS -------
-
-s3ls(){
-aws s3 ls s3://$1
-}
-
-s3cp(){
-aws s3 cp $2 s3://$1 
-}
 
 #---- Content discovery ----
 thewadl(){ #this grabs endpoints from a application.wadl and puts them in yahooapi.txt
@@ -64,3 +55,5 @@ nc -l -n -vv -p $1 -k
 crtshdirsearch(){ #gets all domains from crtsh, runs httprobe and then dir bruteforcers
 curl -s https://crt.sh/?q\=%.$1\&output\=json | jq -r '.[].name_value' | sed 's/\*\.//g' | sort -u | httprobe -c 50 | grep https | xargs -n1 -I{} python3 ~/tools/dirsearch/dirsearch.py -u {} -e $2 -t 50 -b 
 }
+
+
